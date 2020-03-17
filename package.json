@@ -1,0 +1,31 @@
+{
+  "name": "electron-reinstall",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/Akimotorakiyu/cliStudent.git",
+  "author": "瓦姆乌·湫曗 <2514343130@qq.com>",
+  "license": "MIT",
+  "bin": {
+    "electron-reinstall": "./bin/index.js"
+  },
+  "scripts": {
+    "dev": "node ./bin/index.js"
+  },
+  "dependencies": {
+    "@types/node": "^13.9.1",
+    "gluegun": "^4.2.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "husky": "^4.2.3",
+    "node-dev": "^4.0.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}

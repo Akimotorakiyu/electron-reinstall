@@ -1,2 +1,15 @@
-# electron-reinstall
- 尝试解决中国无法正常安装electron的问题
+# cliStudent
+
+## link
+
+```sh
+npm link
+```
+
+## electron
+
+使用淘宝镜像安装 electron
+
+```sh
+my-cli electron
+```
