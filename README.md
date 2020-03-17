@@ -1,15 +1,20 @@
-# cliStudent
+# electron-reinstall
 
-## link
+## usage
 
-```sh
-npm link
-```
-
-## electron
-
-使用淘宝镜像安装 electron
+install
 
 ```sh
-my-cli electron
+npm install -g  electron-reinstall
 ```
+
+reinstall electron
+
+```sh
+cd [your project dir]
+electron-reinstall
+```
+
+## LICENSE
+
+MIT
