@@ -1,6 +1,6 @@
 {
   "name": "electron-reinstall",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "main": "index.js",
   "repository": "https://github.com/Akimotorakiyu/electron-reinstall.git",
   "author": "瓦姆乌·湫曗 <2514343130@qq.com>",
