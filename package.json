@@ -9,7 +9,9 @@
     "electron-reinstall": "./bin/index.js"
   },
   "scripts": {
-    "dev": "node ./bin/index.js"
+    "cli": "node ./bin/index.js",
+    "tscli": "node ./bin/tsindex.js",
+    "dev": "tsc --watch"
   },
   "dependencies": {
     "gluegun": "^4.2.0"
