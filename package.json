@@ -15,7 +15,7 @@
     "gluegun": "^4.2.0"
   },
   "devDependencies": {
-    "@types/node": "^13.9.1",
+    "@types/node": "^12.12.6",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3",
     "husky": "^4.2.3",
