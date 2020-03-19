@@ -1,6 +1,6 @@
 {
   "name": "electron-reinstall",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "main": "index.js",
   "repository": "https://github.com/Akimotorakiyu/electron-reinstall.git",
   "author": "瓦姆乌·湫曗 <2514343130@qq.com>",
@@ -11,7 +11,11 @@
   "scripts": {
     "cli": "node ./bin/index.js",
     "tscli": "node ./bin/tsindex.js",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "registry-taobao": "npm config set registry https://registry.npm.taobao.org",
+    "registry-npm": "npm config set registry http://registry.npmjs.org/",
+    "pub": "npm run registry-npm && npm publish && npm run registry-taobao",
+    "pubbeta": "npm run registry-npm && npm publish --tag=beta && npm run registry-taobao"
   },
   "dependencies": {
     "gluegun": "^4.2.0"
