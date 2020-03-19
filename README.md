@@ -1,6 +1,6 @@
 # electron-reinstall
 
-处理国内无法正常安装 electron 的问题
+处理国内 electron 安装慢以及无法正常安装的问题
 
 ## usage
 
