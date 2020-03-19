@@ -1,5 +1,4 @@
 import { GluegunToolbox, GluegunCommand } from "gluegun";
-import {} from "enquirer";
 import * as path from "path";
 const mirrorOptionsString = `
   mirrorOptions:{
@@ -26,6 +25,8 @@ export default <GluegunCommand>{
       return;
     }
 
+    let electronVersionStr = "";
+
     if (
       !(
         packageJson?.dependencies?.electron ||
@@ -40,29 +41,59 @@ export default <GluegunCommand>{
         "- try use `npm install electron -save-dev --ignore-script` or `yarn add electron --dev --ignore-scripts`."
       );
 
-      console.log("aaa", toolbox.prompt.separator);
-      const answer = await toolbox.prompt.ask({
-        type: "select",
-        name: "addElectronCommand",
-        message: "which command do you want to run?",
-        choices: [
-          "npm install electron -save-dev --ignore-script",
-          "yarn add electron --dev --ignore-scripts",
-          { role: "separator", value: "────" } as any,
-          "quit"
-        ]
-      });
-      switch (answer.addElectronCommand) {
+      const { electronVersion } = await toolbox.prompt.ask([
+        {
+          type: "input",
+          name: "electronVersion",
+          message:
+            "which electron Version do you want to add? (default is lastest)",
+          initial: ""
+        }
+      ]);
+      electronVersionStr = electronVersion
+        ? `@${electronVersion.replace("@", "")}`
+        : "";
+    } else {
+      const electronVersion =
+        packageJson?.dependencies?.electron ||
+        packageJson?.devDependencies?.electron;
+
+      electronVersionStr = electronVersion
+        ? `@${electronVersion.replace("@", "")}`
+        : "";
+    }
+
+    const shouldRunInstallElectronScript =
+      (await workdir.existsAsync("node_modules")) &&
+      (await workdir.existsAsync("node_modules/electron")) &&
+      (await workdir.existsAsync("node_modules/electron/package.json"));
+
+    if (!shouldRunInstallElectronScript) {
+      const { addElectronCommand } = await toolbox.prompt.ask([
+        {
+          type: "select",
+          name: "addElectronCommand",
+          message: "which command do you want to run?",
+          choices: [
+            `npm install electron${electronVersionStr} -save-dev --ignore-script`,
+            `yarn add electron${electronVersionStr} --dev --ignore-scripts`,
+            { role: "separator", value: "────" } as any,
+            "quit"
+          ]
+        }
+      ]);
+
+      switch (addElectronCommand) {
         case "quit":
           return;
 
         default:
-          const spin = toolbox.print.spin("installing...");
-          const result = await toolbox.system.run(answer.addElectronCommand);
+          const spin = toolbox.print.spin("installing electron to project...");
+          const result = await toolbox.system.run(addElectronCommand);
           spin.stopAndPersist({
-            text: `add finished!`
+            text: `installing electron to project finished!`
           });
-          toolbox.print.success(`electron ${result || "installed!"}`);
+          toolbox.print.info(`electron ${result || "installed!"}`);
           break;
       }
     }
@@ -77,14 +108,16 @@ export default <GluegunCommand>{
     );
 
     await electronDir.writeAsync("newInstall.js", newInstalljs);
-    const spin = toolbox.print.spin("installing...");
+    const spin = toolbox.print.spin(
+      "installing electron binary to ./node_modules/nelectron..."
+    );
     const result = await toolbox.system.run(
       `node ${path.resolve(electronDir.path(), "newInstall.js")}`
     );
     spin.stopAndPersist({
-      text: `finished!`
+      text: `installing electron binary to ./node_modules/nelectron finished!`
     });
-    toolbox.print.success(`electron ${result || "installed!"}`);
+    toolbox.print.info(`electron ${result || "installed!"}`);
     await electronDir.removeAsync("newInstall.js");
   }
 };
