@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "es6",
     "module": "CommonJS",
-    "types": ["@types/node"]
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "allowJs": true
   },
   "include": ["./src/**/*"]
 }

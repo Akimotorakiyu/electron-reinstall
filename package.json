@@ -12,12 +12,12 @@
     "dev": "node ./bin/index.js"
   },
   "dependencies": {
-    "@types/node": "^13.9.1",
-    "gluegun": "^4.2.0",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.8.3"
+    "gluegun": "^4.2.0"
   },
   "devDependencies": {
+    "@types/node": "^13.9.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3",
     "husky": "^4.2.3",
     "node-dev": "^4.0.0",
     "prettier": "^1.19.1",
