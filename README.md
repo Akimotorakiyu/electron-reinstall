@@ -1,22 +1,6 @@
-# electron-reinstall
+# the issue has already been Fixed by taobao
 
-处理国内 electron 安装慢以及无法正常安装的问题
-
-## usage
-
-install
-
-```sh
-npm install -g  electron-reinstall
+just 
 ```
-
-reinstall electron
-
-```sh
-cd [your project dir]
-electron-reinstall
+npm config set electron_mirror https://npm.taobao.org/mirrors/electron/
 ```
-
-## LICENSE
-
-MIT
